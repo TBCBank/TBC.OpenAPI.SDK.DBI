@@ -7,24 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TBC.OpenAPI.SDK.DBI", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E642209-3256-428A-9F27-63FFF78C3456}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A230372B-7F10-4925-8358-0A15E4ACE5EA}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B8FD6E92-5329-4A52-8B3D-2B3A4546FD5D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TBC.OpenAPI.SDK.DBI.Tests", "tests\TBC.OpenAPI.SDK.DBI.Tests\TBC.OpenAPI.SDK.DBI.Tests.csproj", "{C8D642F0-FD49-4215-B13B-2C092BF1F6F1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{15D68B3A-34FD-4DDB-A3F4-FD245AA2F073}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{6C56A97E-821C-424B-8E8A-D3C996B52E67}"
-	ProjectSection(SolutionItems) = preProject
-		codeql-analysis.yml = codeql-analysis.yml
-		dependency-review.yml = dependency-review.yml
-		main.yml = main.yml
-		nuget.yml = nuget.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{8F1639FF-CB5A-4316-99BB-5A3A18984873}"
 EndProject
@@ -61,7 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{25E006CE-F023-43E8-B36B-129867814FC3} = {2E642209-3256-428A-9F27-63FFF78C3456}
 		{C8D642F0-FD49-4215-B13B-2C092BF1F6F1} = {B8FD6E92-5329-4A52-8B3D-2B3A4546FD5D}
-		{6C56A97E-821C-424B-8E8A-D3C996B52E67} = {15D68B3A-34FD-4DDB-A3F4-FD245AA2F073}
 		{1F56A329-9FD6-4529-B8DC-8BB6AC58D6AE} = {8F1639FF-CB5A-4316-99BB-5A3A18984873}
 		{B486F6E1-E3DC-4787-89E9-7236C57D74BC} = {8F1639FF-CB5A-4316-99BB-5A3A18984873}
 	EndGlobalSection
