@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.Options;
-using StatementEIServiceReference;
+﻿using StatementEIServiceReference;
 using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
 
 namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
-    internal class StatementAdapter : IStatementAdapter
+    public class StatementAdapter : IStatementAdapter
     {
         private readonly ChannelFactory<StatementService> _channelFactory;
 
-        public StatementAdapter(IOptions<ServiceSettings> options)
+        public StatementAdapter(ChannelFactory<StatementService> channelFactory)
         {
-            var serviceConfig = options.Value.StatementServiceConfig;
-            var factory = new ChannelFactoryManager<StatementService>(serviceConfig.Endpoint);
-            _channelFactory = factory.GetChannelFactory();
+            _channelFactory = channelFactory;
         }
 
         public async Task<GetAccountStatementResponse> GetAccountStatement(GetAccountStatementRequest request, SecurityCredentials securityCredentials)

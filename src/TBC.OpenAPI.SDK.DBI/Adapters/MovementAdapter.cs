@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.Options;
-using MovementEIServiceReference;
+﻿using MovementEIServiceReference;
 using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
 
 namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
-    internal class MovementAdapter : IMovementAdapter
+    public class MovementAdapter : IMovementAdapter
     {
         private readonly ChannelFactory<MovementService> _channelFactory;
 
-        public MovementAdapter(IOptions<ServiceSettings> options)
+        public MovementAdapter(ChannelFactory<MovementService> channelFactory)
         {
-            var serviceConfig = options.Value.MovementServiceConfig;
-            var factory = new ChannelFactoryManager<MovementService>(serviceConfig.Endpoint);
-            _channelFactory = factory.GetChannelFactory();
+            _channelFactory = channelFactory;
         }
 
         public async Task<GetAccountMovementsResponse> GetAccountMovements(GetAccountMovementsRequest request, SecurityCredentials securityCredentials)

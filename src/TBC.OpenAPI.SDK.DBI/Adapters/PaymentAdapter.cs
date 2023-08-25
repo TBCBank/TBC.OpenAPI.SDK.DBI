@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.Options;
-using PaymentEIServiceReference;
+﻿using PaymentEIServiceReference;
 using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
 
 namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
-    internal class PaymentAdapter : IPaymentAdapter
+    public class PaymentAdapter : IPaymentAdapter
     {
         private readonly ChannelFactory<PaymentService> _channelFactory;
 
-        public PaymentAdapter(IOptions<ServiceSettings> options)
+        public PaymentAdapter(ChannelFactory<PaymentService> channelFactory)
         {
-            var serviceConfig = options.Value.PaymentServiceConfig;
-            var factory = new ChannelFactoryManager<PaymentService>(serviceConfig.Endpoint);
-            _channelFactory = factory.GetChannelFactory();
+            _channelFactory = channelFactory;
         }
 
         public async Task<GetBatchPaymentIdResponse> GetBatchPaymentId(GetBatchPaymentIdRequest request, SecurityCredentials securityCredentials)

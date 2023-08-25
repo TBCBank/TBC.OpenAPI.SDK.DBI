@@ -1,22 +1,18 @@
 ﻿using ChangePasswordEIServiceReference;
-using Microsoft.Extensions.Options;
 using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
 
 namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
-    internal class ChangePasswordAdapter : IChangePasswordAdapter
+    public class ChangePasswordAdapter : IChangePasswordAdapter
     {
         private readonly ChannelFactory<ChangePasswordService> _channelFactory;
 
-        public ChangePasswordAdapter(IOptions<ServiceSettings> options)
+        public ChangePasswordAdapter(ChannelFactory<ChangePasswordService> channelFactory)
         {
-            var serviceConfig = options.Value.ChangePasswordServiceConfig; 
-            var factory = new ChannelFactoryManager<ChangePasswordService>(serviceConfig.Endpoint);
-            _channelFactory = factory.GetChannelFactory();
+            _channelFactory = channelFactory;
         }
 
         public async Task<ChangePasswordResponse> ChangePassword(ChangePasswordRequest request, SecurityCredentials securityCredentials)

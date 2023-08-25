@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.Options;
-using PostboxEIServiceReference;
+﻿using PostboxEIServiceReference;
 using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
 
 namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
-    internal class PostboxAdapter : IPostboxAdapter
+    public class PostboxAdapter : IPostboxAdapter
     {
         private readonly ChannelFactory<PostboxService> _channelFactory;
 
-        public PostboxAdapter(IOptions<ServiceSettings> options)
+        public PostboxAdapter(ChannelFactory<PostboxService> channelFactory)
         {
-            var serviceConfig = options.Value.PostboxServiceConfig;
-            var factory = new ChannelFactoryManager<PostboxService>(serviceConfig.Endpoint);
-            _channelFactory = factory.GetChannelFactory();
+            _channelFactory = channelFactory;
         }
 
         public async Task<AcknowledgePostboxMessagesResponse> AcknowledgePostboxMessages(AcknowledgePostboxMessagesRequest request, SecurityCredentials securityCredentials)

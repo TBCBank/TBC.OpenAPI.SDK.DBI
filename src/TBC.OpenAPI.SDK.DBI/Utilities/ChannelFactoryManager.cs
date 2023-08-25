@@ -3,18 +3,11 @@ using System.Text;
 
 namespace TBC.OpenAPI.SDK.DBI.Factories
 {
-    internal sealed class ChannelFactoryManager<TService> where TService : class
+    internal static class ChannelFactoryManager<TService> where TService : class
     {
-        private readonly string _endpoint;
-
-        public ChannelFactoryManager(string endpoint)
+        public static ChannelFactory<TService> GetChannelFactory(string endpoint)
         {
-            _endpoint = endpoint;
-        }
-
-        public ChannelFactory<TService> GetChannelFactory()
-        {
-            var endpointAddress = new EndpointAddress(_endpoint);
+            var endpointAddress = new EndpointAddress(endpoint);
             HttpBindingBase binding;
 
             if (endpointAddress.Uri.Scheme == "https")
