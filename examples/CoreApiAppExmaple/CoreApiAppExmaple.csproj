@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.DBI\TBC.OpenAPI.SDK.DBI.csproj" />
+  </ItemGroup>
+
 </Project>
