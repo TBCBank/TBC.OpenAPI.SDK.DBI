@@ -1,6 +1,6 @@
-﻿﻿# TBC.OpenAPI.SDK.DBI
+# TBC.OpenAPI.SDK.DBI
 ​
-[![NuGet version (TBC.OpenAPI.SDK.DBI)](https://img.shields.io/nuget/v/TBC.OpenAPI.SDK.DBI.svg?label=TBC.OpenAPI.SDK.DBI)](https://www.nuget.org/packages/TBC.OpenAPI.SDK.DBI/)
+[![NuGet version (TBC.OpenAPI.SDK.DBI)](https://img.shields.io/nuget/v/TBC.OpenAPI.SDK.DBI.svg?label=TBC.OpenAPI.SDK.DBI)](https://www.nuget.org/packages/TBC.OpenAPI.SDK.DBI)
 ​​
 ## DBI SDK
 ​
