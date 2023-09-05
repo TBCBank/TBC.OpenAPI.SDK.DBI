@@ -1,10 +1,6 @@
-﻿using System.Runtime.Serialization;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
 using TBC.OpenAPI.SDK.DBI.Models;
 
 namespace TBC.OpenAPI.SDK.DBI.Utilities

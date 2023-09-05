@@ -1,27 +1,49 @@
 ﻿using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
+using System.Xml;
+using TBC.OpenAPI.SDK.DBI.Models;
 
-namespace TBC.OpenAPI.SDK.DBI.Factories
+namespace TBC.OpenAPI.SDK.DBI.Utilities
 {
-    internal static class ChannelFactoryManager<TService> where TService : class
+    public class ChannelFactoryManager<TService> where TService : class
     {
-        public static ChannelFactory<TService> GetChannelFactory(string endpoint)
+        private readonly ServiceConfig _config;
+
+        public ChannelFactory<TService> ChannelFactory { get; }
+        public EndpointAddress Endpoint { get; }
+        public CustomBinding Binding { get; }
+
+        public ChannelFactoryManager(ServiceConfig config)
         {
-            var endpointAddress = new EndpointAddress(endpoint);
-            HttpBindingBase binding;
+            _config= config;
 
-            if (endpointAddress.Uri.Scheme == "https")
+            Endpoint = new EndpointAddress(_config.Endpoint);
+            Binding = new CustomBinding();
+
+            var encoding = new TextMessageEncodingBindingElement()
             {
-                binding = new BasicHttpsBinding();
-            }
-            else
+                MessageVersion = MessageVersion.Soap11,
+                WriteEncoding = Encoding.UTF8,
+                ReaderQuotas = XmlDictionaryReaderQuotas.Max
+            };
+
+            Binding.Elements.Add(encoding);
+
+            var transport = new HttpsTransportBindingElement
             {
-                binding = new BasicHttpBinding();
-            }
+                MaxReceivedMessageSize = 20000000
+            };
 
-            binding.TextEncoding = Encoding.UTF8;
+            Binding.Elements.Add(transport);
 
-            return new ChannelFactory<TService>(binding, endpointAddress);
+            ChannelFactory =  new ChannelFactory<TService>(Binding, Endpoint);
+        }
+
+        public TService CreateChannel(SecurityCredentials securityCredentials)
+        {
+            ChannelFactory.Endpoint.EndpointBehaviors.Add(new SoapEndpointBehavior(securityCredentials));
+            return ChannelFactory.CreateChannel();
         }
     }
 }

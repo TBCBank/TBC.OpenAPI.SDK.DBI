@@ -1,5 +1,4 @@
 ﻿using ChangePasswordEIServiceReference;
-using System.ServiceModel;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
 using TBC.OpenAPI.SDK.DBI.Models;
 using TBC.OpenAPI.SDK.DBI.Utilities;
@@ -8,16 +7,16 @@ namespace TBC.OpenAPI.SDK.DBI.Adapters
 {
     public class ChangePasswordAdapter : IChangePasswordAdapter
     {
-        private readonly ChannelFactory<ChangePasswordService> _channelFactory;
+        private readonly ChannelFactoryManager<ChangePasswordService> _factoryManager;
 
-        public ChangePasswordAdapter(ChannelFactory<ChangePasswordService> channelFactory)
+        public ChangePasswordAdapter(ChannelFactoryManager<ChangePasswordService> factoryManager)
         {
-            _channelFactory = channelFactory;
+            _factoryManager = factoryManager;
         }
 
         public async Task<ChangePasswordResponse> ChangePassword(ChangePasswordRequest request, SecurityCredentials securityCredentials)
         {
-            var service = _channelFactory.GetService(securityCredentials);
+            var service = _factoryManager.CreateChannel(securityCredentials);
 
             return await service.ChangePasswordAsync(request).ConfigureAwait(false);
         }

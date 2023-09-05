@@ -5,7 +5,7 @@ using TBC.OpenAPI.SDK.DBI.Models;
 
 namespace TBC.OpenAPI.SDK.DBI.Utilities
 {
-    internal sealed class SoapEndpointBehavior : IEndpointBehavior
+    public sealed class SoapEndpointBehavior : IEndpointBehavior
     {
         private readonly SecurityCredentials _securityCredentials;
 

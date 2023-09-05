@@ -26,10 +26,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Folder Include="Services\" />
 		<Folder Include="ServiceReferences\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AppCenter" Version="5.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.*,)" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 		<PackageReference Include="System.ServiceModel.Http" Version="[4.*,)" />

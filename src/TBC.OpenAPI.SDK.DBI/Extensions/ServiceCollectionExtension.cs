@@ -6,7 +6,7 @@ using PostboxEIServiceReference;
 using StatementEIServiceReference;
 using TBC.OpenAPI.SDK.DBI.Adapters;
 using TBC.OpenAPI.SDK.DBI.Adapters.Contracts;
-using TBC.OpenAPI.SDK.DBI.Factories;
+using TBC.OpenAPI.SDK.DBI.Utilities;
 using TBC.OpenAPI.SDK.DBI.Models;
 
 namespace TBC.OpenAPI.SDK.DBI.Extensions
@@ -17,47 +17,47 @@ namespace TBC.OpenAPI.SDK.DBI.Extensions
         {
             if (settings.ChangePasswordServiceConfig != null)
             {
-                services.AddSingleton(_ =>
+                services.AddTransient(_ =>
                 {
-                    return ChannelFactoryManager<ChangePasswordService>.GetChannelFactory(settings.ChangePasswordServiceConfig.Endpoint);
+                    return new ChannelFactoryManager<ChangePasswordService>(settings.ChangePasswordServiceConfig);
                 });
-                services.AddScoped<IChangePasswordAdapter, ChangePasswordAdapter>();
+                services.AddTransient<IChangePasswordAdapter, ChangePasswordAdapter>();
             }
 
             if (settings.MovementServiceConfig != null)
             {
-                services.AddSingleton(_ =>
+                services.AddTransient(_ =>
                 {
-                    return ChannelFactoryManager<MovementService>.GetChannelFactory(settings.MovementServiceConfig.Endpoint);
+                    return new ChannelFactoryManager<MovementService>(settings.MovementServiceConfig);
                 });
-                services.AddScoped<IMovementAdapter, MovementAdapter>();
+                services.AddTransient<IMovementAdapter, MovementAdapter>();
             }
 
             if (settings.PaymentServiceConfig != null)
             {
-                services.AddSingleton(_ =>
+                services.AddTransient(_ =>
                 {
-                    return ChannelFactoryManager<PaymentService>.GetChannelFactory(settings.PaymentServiceConfig.Endpoint);
+                    return new ChannelFactoryManager<PaymentService>(settings.PaymentServiceConfig);
                 });
-                services.AddScoped<IPaymentAdapter, PaymentAdapter>();
+                services.AddTransient<IPaymentAdapter, PaymentAdapter>();
             }
 
             if (settings.PostboxServiceConfig != null)
             {
-                services.AddSingleton(_ =>
+                services.AddTransient(_ =>
                 {
-                    return ChannelFactoryManager<PostboxService>.GetChannelFactory(settings.PostboxServiceConfig.Endpoint);
+                    return new ChannelFactoryManager<PostboxService>(settings.PostboxServiceConfig);
                 });
-                services.AddScoped<IPostboxAdapter, PostboxAdapter>();
+                services.AddTransient<IPostboxAdapter, PostboxAdapter>();
             }
 
             if (settings.StatementServiceConfig != null)
             {
-                services.AddSingleton(_ =>
+                services.AddTransient(_ =>
                 {
-                    return ChannelFactoryManager<StatementService>.GetChannelFactory(settings.StatementServiceConfig.Endpoint);
+                    return new ChannelFactoryManager<StatementService>(settings.StatementServiceConfig);
                 });
-                services.AddScoped<IStatementAdapter, StatementAdapter>();
+                services.AddTransient<IStatementAdapter, StatementAdapter>();
             }
 
             return services;
