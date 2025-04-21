@@ -33,10 +33,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AppCenter" Version="5.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.*,)" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.1" />
 		<PackageReference Include="System.ServiceModel.Http" Version="[4.*,)" />
 		<PackageReference Include="System.ServiceModel.Primitives" Version="[4.*,)" />
-		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.3.0" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
